@@ -2,22 +2,22 @@
   #FONTS
 \*------------------------------------*/
 
-@font-face {
+@font-face{
     font-family: "Clear Sans";
     font-weight: 200;
-    src: url("../fonts/ClearSans-Light-webfont.woff") format("woff");
+    src: url("../fonts/ClearSans-Light-webfont.woff") format("woff2")
 }
 
-@font-face {
+@font-face{
     font-family: "Clear Sans";
     font-weight: 400;
-    src: url("../fonts/ClearSans-Regular-webfont.woff") format("woff");
+    src: url("../fonts/ClearSans-Regular-webfont.woff") format("woff2")
 }
 
-@font-face {
+@font-face{
     font-family: "Clear Sans";
     font-weight: 600;
-    src: url("../fonts/ClearSans-Medium-webfont.woff") format("woff");
+    src: url("../fonts/ClearSans-Medium-webfont.woff") format("woff2")
 }
 
 /*------------------------------------*\
@@ -36,11 +36,11 @@ html {
     font-weight: 200;
     font-family: "Clear Sans", Helvetica, arial, sans-serif;
     box-sizing: border-box;
-    background: linear-gradient(to bottom right, #0A257D,#061649);
-    background-attachment: fixed;
-    color: white;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(to bottom right, #0A257D, #061649);
+    background-attachment: fixed;
+    color: white;
 }
 
 *,
@@ -129,21 +129,17 @@ table,
 address,
 figure {
     margin: 0 0 24px;
+    color: #8EC7FF;
 }
 
 ul,
 ol {
-    padding-left: 0;
+    padding-left: 24px;
 }
 
 li ul,
 li ol {
     margin-bottom: 0;
-}
-
-/* max height svg = height vd parent */
-svg {
-    height: 100%;
 }
 
 blockquote {
@@ -173,7 +169,15 @@ hr {
 }
 
 a {
+    color: #1195F7;
     transition: all .1s ease-in-out;
+}
+
+a:visited,
+a:active,
+a:hover,
+a:focus {
+    color: #8EC7FF;
 }
 
 /*------------------------------------*\
@@ -222,10 +226,9 @@ a {
 */
 
 .o-container {
-    /* margings op auto voor te centreren */
     margin-left: auto;
     margin-right: auto;
-    max-width: 70.8em; /* 1278px / 18px */
+    max-width: 71em; /* 71 * 18px = 1278px */
 }
 
 /*
@@ -265,7 +268,6 @@ a {
 
 .o-layout {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
 }
 
@@ -380,78 +382,159 @@ a {
 .o-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 0;
 }
 
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
 
-.c-header__logo {
+/*
+    Components: Logo
+    ---
+    Main logo of the website
+*/
+
+.c-logo__svg {
     height: 32px;
 }
 
 /*
-    Components: Navigation
+    Component: header
+    ---
+    Main header of the website
 */
 
+.c-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .c-header__nav {
-    text-transform: uppercase;
-    letter-spacing: 1px;    /* Extra ruimte tss de letters */
-    margin-top: 36px;
-}
-
-.c-nav__item {
-    padding-bottom: 16px;
-}
-
-.c-nav__link {
-    font-size: 13px;
-    font-weight: 400; /* regular */
-    text-decoration: none;
-    color: white;
-    transition: all 0.1s ease-in-out;
-}
-
-.c-nav__link:hover {
-    text-shadow: 0 0 8px #8EC7FF;
-    color: #DBEDFF;
-}
-
-.c-nav__link--active {
-    text-shadow: 0 0 8px #8EC7FF;
+    display: none;
 }
 
 @media (min-width: 992px) {
-    .c-header {
-        display: flex;
-        flex-wrap: wrap;
-        /* main axis */
-        justify-content: space-between;
-        /* cross axis */
-        align-items: center;
+    .c-header__logo,
+    .c-header__nav {
+        flex-grow: 1;
+        flex-basis: 50%;
     }
 
     .c-header__nav {
-        margin-top: 0;
-    }
-
-    .c-nav__item {
-        padding-bottom: 0;
-        padding: 16px 32px;
-    }
-
-    .c-nav__list {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
     }
 }
 
 /*
-    Components: CTA
+    Components: Navigation
+    ---
+    Main navigation of the website
 */
-.c-btn--cta {
-    background-color: blue;
+
+.c-nav {
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.c-nav__link {
+    font-size: 13px;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    padding: 8px 0;     
+}
+
+.c-nav__link:hover,
+.c-nav__link:focus {
+    color: #DBEDFF;
+    text-shadow: 0 0 8px;
+}
+
+.c-nav__link,
+.c-nav__link:visited,
+.c-nav__link:active {
+    color: white;
+}
+
+@media (min-width: 768px) {
+    
+    .c-nav__list {
+        display: flex;
+        align-items: center;
+    }
+
+    .c-nav__link {
+        padding: 12px 16px;
+    }
+}
+
+/*
+    Components: Call To Action link
+    ---
+    Styling for a call to action link
+*/
+
+.c-link-cta {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 24px;
+    padding: 16px 32px;
+    background: linear-gradient(to right, #033AA7 0%, #0053FB 51%, #0053FB 100%);
+    border: 1px solid rgba(142, 199, 255, 0.2);
+    box-shadow: 0 0 10px rgba(142, 199, 255, 0.2);
+
+    transition: 0.5s;
+    background-size: 200% auto;
+}
+
+.c-link-cta,
+.c-link-cta:visited,
+.c-link-cta:active {
+    color: #DBEDFF;
+}
+
+.c-link-cta:hover {
+    color: #fff;
+    background-position: right center;
+}
+
+/*
+    Components: Figure
+    ---
+    Styling for figures and their captions
+*/
+
+.c-figure {
+    position: relative;
+}
+
+.c-figure__caption {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+
+    text-align: right;
+
+    width: 260px;
+    
+    padding: 16px;
+
+    color: black;
+    background: #FFFFFF;
+    border-right: 4px solid #0053FB;
 }
 
 /*------------------------------------*\
